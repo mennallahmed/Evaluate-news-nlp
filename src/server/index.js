@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 const cors = require('cors');
 app.use(cors());
 // Setup empty JS object
-const dataObject = {}
+dataObject = {}
 
 // MeaningCloud API Key
 let apiKey = process.env.API_KEY;
@@ -33,6 +33,7 @@ app.listen(8081, function () {
 })
 
 app.get('/test', function (req, res) {
+    res.setHeader("Access-Control-Allow-Origin","*")
     res.send(mockAPIResponse)
 })
 
