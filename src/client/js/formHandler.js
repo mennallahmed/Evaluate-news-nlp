@@ -49,7 +49,7 @@ const getApiKey = async () =>{
 const updateUI = async () => {
     const request = await fetch('http://localhost:8081/all');
     try {
-        const allData = await response.json();
+        const allData = await request.json();
         console.log(allData);
         document.getElementById('results').innerHTML = allData.agreement;
     }catch(error){
