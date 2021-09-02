@@ -24,9 +24,9 @@ Need to declare our API key, which will look something like this:
 ```
 let apiKey = process.env.API_KEY;
 ```
-- [ ] Use npm to install the dotenv package ```npm install dotenv```. This will allow us to use environment variables we set in a new file.
-- [ ] Create a new ```.env``` file in the root of your project
-- [ ] Fill the .env file with your API keys like this:
+- Use npm to install the dotenv package ```npm install dotenv```. This will allow us to use environment variables we set in a new file.
+- Create a new ```.env``` file in the root of your project
+- Fill the .env file with your API keys like this:
 ```
 API_KEY=**************************
 ```
