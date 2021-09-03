@@ -3,11 +3,8 @@ function handleSubmit(event) {
     const baseUrl = "https://api.meaningcloud.com/sentiment-2.1?key=";
     let apiKey = "";
     let data = {};
-    // check what text was put into the form field
+    // Get the URL from the form field
     let formText = document.getElementById('name').value
-    //Client.checkForName(formText)
-
-    console.log("::: Form Submitted :::")
 
  // POST request to server
  const postData = async (url = '', data = {}) => {
@@ -34,7 +31,6 @@ const getApiKey = async () =>{
   }
 
   const getInfo= async (baseUrl, formText, apiKey)=>{
-
     const res = await fetch(baseUrl+apiKey+'&of=json&model=general&lang=en&txt='+formText)
     try{
       const data = await res.json();
@@ -51,41 +47,35 @@ const updateUI = async () => {
     try {
         const allData = await request.json();
         console.log(allData);
-        document.getElementById('results').innerHTML = allData.agreement;
+        document.getElementById('agreement').innerHTML = `Agreement: ${allData.agreement}`;
+        document.getElementById('subjectivity').innerHTML = `Subjectivity: ${allData.subjectivity}`;
+        document.getElementById('confidence').innerHTML = `Confidence: ${allData.confidence}`;
+        document.getElementById('irony').innerHTML = `Irony: ${allData.irony}`;
     }catch(error){
         console.log('error', error);
     }
-    console.log('AFTER GET');
 }
 
-// console.log("User input posted to the server");
-    getApiKey()
-    .then(
-    getInfo(baseUrl,formText,apiKey)
-    .then(function(data){
-      console.log(data);
-      postData('http://localhost:8081/addText',{
-        agreement: data.agreement,
-        subjectivity: data.subjectivity,
-        confidence: data.confidence,
-        irony: data.irony,    
-      //userInput: formText
-      }).then(
-        updateUI()
-      )
+// Check for valid URL 
+if(Client.checkForUrl(formText) == true){
+getApiKey()
+.then(() => getInfo(baseUrl,formText,apiKey))
+.then((data) => {
+  postData('http://localhost:8081/addText',{
+    agreement: data.agreement,
+    subjectivity: data.subjectivity,
+    confidence: data.confidence,
+    irony: data.irony,
     })
-    )
-
-
- /*   fetch('http://localhost:8081/test')
-    .then(res => res.json())
-    .then(function(res) {
-        document.getElementById('results').innerHTML = res.message
-    })*/
+    })
+    .then(() => updateUI());
+  }
+  else{
+    document.getElementById('agreement').innerHTML ="Please enter valid URL";
+  }
 
 }
 
 
 
 export { handleSubmit }
-// "https://api.meaningcloud.com/sentiment-2.1"
