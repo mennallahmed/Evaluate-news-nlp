@@ -43,16 +43,17 @@ app.get('/api', (req, res) => {
   });
 // Respond with JS object
 app.get('/all', function (req, res) {
+    console.log(dataObject);
     res.send(dataObject)
   })
 
 //post data   
 app.post('/addText', (req, res) => {
-    (dataObject["agreement"] = req.body.agreement),
-      (dataObject["subjectivity"] = req.body.subjectivity),
-      (dataObject["confidence"] = req.body.confidence),
-      (dataObject["irony"] = req.body.irony);
-  
+    dataObject["agreement"] = req.body.agreement;
+    dataObject["subjectivity"] = req.body.subjectivity;
+    dataObject["confidence"] = req.body.confidence;
+    dataObject["irony"] = req.body.irony;
+    console.log(dataObject);
     res.send(dataObject);
   });
 console.log(`Your API key is ${process.env.API_KEY}`);
