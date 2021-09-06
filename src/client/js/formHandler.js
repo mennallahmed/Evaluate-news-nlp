@@ -72,6 +72,9 @@ getApiKey()
   }
   else{
     document.getElementById('agreement').innerHTML ="Please enter valid URL";
+    document.getElementById('subjectivity').innerHTML = "";
+    document.getElementById('confidence').innerHTML = "";
+    document.getElementById('irony').innerHTML = "";
   }
 
 }
