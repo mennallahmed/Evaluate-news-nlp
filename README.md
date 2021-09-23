@@ -17,7 +17,7 @@ The server is set up using ```express``` and Node is used to install all the dep
 This project uses Webpack as the build tool. The configuration can be found on the repository. There are different setups for production and development environments.
 
 ## API
-The API used to interpret the articles is.
+The API used to interpret the articles is [MeaningCloud API]( https://www.meaningcloud.com/developer/sentiment-analysis).
 
 ### Environment Variables
 Need to declare our API key, which will look something like this:
@@ -32,6 +32,8 @@ API_KEY=**************************
 ```
 ## Jest
 The code is tested using [Jest](https://jestjs.io/). Find in directory "__test__".
+`cd` into your new folder and run:
+- ```npm run test```
 
 ## Service Workers
 Using Google [Workbox](https://developers.google.com/web/tools/workbox) for "Offline Functionality".
